@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-forcenetwork" version="1.0.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-forcenetwork" xmlns:android="http://schemas.android.com/apk/res/android" version="1.1.0">
 
     <name>cordova-plugin-forcenetwork</name>
     <description>Force user to switch-on its internet connection</description>
@@ -40,4 +40,15 @@
         <framework src="SystemConfiguration.framework"/>
 
     </platform>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="CDVForceNetwork">
+                <param name="android-package" value="tv.s10d.cordova.forcenetwork.CDVForceNetwork"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/CDVForceNetwork.java" target-dir="src/tv/s10d/cordova/forcenetwork" />
+    </platform>
+
 </plugin>

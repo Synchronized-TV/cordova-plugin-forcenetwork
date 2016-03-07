@@ -1,6 +1,6 @@
 # cordova-plugin-forcenetwork
 
-iOS only at the moment.
+iOS and Android only at the moment.
 
 Ensure we always have WiFi available and invite user to change its settings if not.
 
