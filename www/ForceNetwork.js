@@ -34,7 +34,6 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
                 if (!that.confirmWindow) {
                   that.confirmWindow = true;
                   navigator.notification.confirm(that.options.confirmMessage, function(buttonIndex) {
-                      console.log('buttonIndex', buttonIndex);
                       that.confirmWindow = false;
                       if (buttonIndex === 1) {
                         // ok
@@ -50,12 +49,10 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
             }
         }, that.options.timeoutDelay);
     } else {
-      navigator.notification.close();
       that.confirmWindow = false;
     }
 };
 ForceNetwork.prototype.onOnline = function() {
-  navigator.notification.close();
   this.confirmWindow = false;
 }
 ForceNetwork.prototype.onOffline = function() {

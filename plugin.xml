@@ -7,7 +7,7 @@
     <repo>https://github.com/Synchronized-TV/cordova-plugin-forcenetwork.git</repo>
 
     <dependency id="cordova-plugin-network-information"/>
-    <dependency id="cordova-plugin-dialogs" url="https://github.com/revolunet/cordova-plugin-dialogs" commit="dc783e7568cd5365bcfb99e8c5ffc1422866fdbe"/>
+    <dependency id="cordova-plugin-dialogs"/>
 
     <js-module src="www/ForceNetwork.js" name="ForceNetwork">
         <clobbers target="cordova.plugins.ForceNetwork"/>
