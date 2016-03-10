@@ -34,19 +34,28 @@ ForceNetwork.prototype.ensureNetworkConnection = function () {
                 if (!that.confirmWindow) {
                   that.confirmWindow = true;
                   navigator.notification.confirm(that.options.confirmMessage, function(buttonIndex) {
+                      console.log('buttonIndex', buttonIndex);
                       that.confirmWindow = false;
-                      that.openNetworkSettings();
-                  }, that.options.confirmTitle, [that.options.confirmButtonTitle]);
+                      if (buttonIndex === 1) {
+                        // ok
+                        that.openNetworkSettings();
+                      } else {
+                        // cancel : try again
+                        setTimeout(function() {
+                          that.ensureNetworkConnection();
+                        }, that.options.timeoutDelay);
+                      }
+                  }, that.options.confirmTitle, [that.options.confirmButtonTitle, that.options.cancelButtonTitle]);
                 }
             }
         }, that.options.timeoutDelay);
     } else {
-      navigator.notification.dismissAlert();
+      navigator.notification.close();
       that.confirmWindow = false;
     }
 };
 ForceNetwork.prototype.onOnline = function() {
-  navigator.notification.dismissAlert();
+  navigator.notification.close();
   this.confirmWindow = false;
 }
 ForceNetwork.prototype.onOffline = function() {
@@ -62,6 +71,7 @@ ForceNetwork.prototype.init = function(options) {
     };
     this.options.confirmTitle = options.confirmTitle || 'Network access';
     this.options.confirmMessage = options.confirmMessage || 'Internet connexion is not available';
+    this.options.cancelButtonTitle = options.cancelButtonTitle || 'Cancel';
     this.options.confirmButtonTitle = options.confirmButtonTitle || 'Open settings';
 
     document.addEventListener("online", this.onOnline.bind(this), false);

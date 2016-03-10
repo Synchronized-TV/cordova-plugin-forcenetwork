@@ -6,8 +6,6 @@ import org.apache.cordova.CordovaPlugin;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import android.content.Context;
-import android.app.Activity;
 import android.content.Intent;
 
 public class CDVForceNetwork extends CordovaPlugin {
@@ -38,9 +36,7 @@ public class CDVForceNetwork extends CordovaPlugin {
 
 
     public void openNetworkSettings() {
-        Context context =  this.cordova.getActivity().getApplicationContext();
         Intent intent = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
-
         this.cordova.startActivityForResult(this, intent, 0);
     }
 
